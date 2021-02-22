@@ -1,3 +1,4 @@
+import 'package:Dropdown/Questions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,15 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   var questions = ["Hello","World",'Hello World','This is last ques.'];
-  var count=0;
-  void questionChange(){
-    count = count+1;
-    print(count);
+  var _count=0;
+  void _questionChange(){
+    setState(() {
+      _count = _count+1;
+      if(_count>3) {
+        _count=0;
+      }
+    });
+    print(_count);
   }
 
   @override
@@ -21,11 +27,11 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Column(children: [
-        Text(questions[count]),
+        Questions(questions[_count]),
         ElevatedButton(
             child: Text("Button"), onPressed: (){
               print('Clicked 01');
-              questionChange();
+              _questionChange();
             }),
         ElevatedButton(
             child: Text("Button"), onPressed: (){
