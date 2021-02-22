@@ -1,3 +1,4 @@
+import 'package:Dropdown/Answares.dart';
 import 'package:Dropdown/Questions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,23 +29,10 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(10),
       child: Column(children: [
         Questions(questions[_count]),
-        ElevatedButton(
-            child: Text("Button"), onPressed: (){
-              print('Clicked 01');
-              _questionChange();
-            }),
-        ElevatedButton(
-            child: Text("Button"), onPressed: (){
-              print('Clicked 02');
-            }),
-        ElevatedButton(
-            child: Text("Button"), onPressed: (){
-              print('Clicked 03');
-            }),
-        ElevatedButton(
-            child: Text("Button"), onPressed: (){
-              print('Clicked 04');
-            })
+        Answares(_questionChange),
+        Answares(_questionChange),
+        Answares(_questionChange),
+        Answares(_questionChange),
       ]),
     ));
   }
