@@ -26,15 +26,32 @@ class _HomePageState extends State<HomePage> {
     }
   ];
 
+  //Demo for Quize question and answare create and input
+  void inputValue(){
+    String _1 = "question 4";
+        var _2 = 'answare 1';
+        var _3 = 'answare 2';
+        var _4 = 'answare 3';
+        var aObject = {
+          'ques': _1,
+          'ans': [_2, _3, _4],
+        };
+        questionAndAnswareText.add(aObject);
+  }
+
+        
   var _count = 0;
   void _questionChange() {
+    
     setState(() {
       _count = _count + 1;
       if (_count >= questionAndAnswareText.length) {
+        inputValue();
         _count = 0;
       }
     });
     print(_count);
+    print(questionAndAnswareText.length);
   }
 
   @override
