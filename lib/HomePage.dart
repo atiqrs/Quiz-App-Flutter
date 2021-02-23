@@ -9,14 +9,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //var questions = ["Hello","World",'Hello World','This is last ques.'];
 
-  var questions = ["Hello","World",'Hello World','This is last ques.'];
-  var _count=0;
-  void _questionChange(){
+  var questionAndAnswareText = [
+    {
+      'ques': 'question 1',
+      'ans': ['ans 1.1', 'ans 1.2', 'ans 1.3']
+    },
+    {
+      'ques': 'question 2',
+      'ans': ['ans 2.1', 'ans 2.2', 'ans 2.3']
+    },
+    {
+      'ques': 'question 3',
+      'ans': ['ans 3.1', 'ans 3.2', 'ans 3.3']
+    }
+  ];
+
+  var _count = 0;
+  void _questionChange() {
     setState(() {
-      _count = _count+1;
-      if(_count>3) {
-        _count=0;
+      _count = _count + 1;
+      if (_count >= questionAndAnswareText.length) {
+        _count = 0;
       }
     });
     print(_count);
@@ -28,11 +43,13 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
       padding: const EdgeInsets.all(10),
       child: Column(children: [
-        Questions(questions[_count]),
-        Answares(_questionChange),
-        Answares(_questionChange),
-        Answares(_questionChange),
-        Answares(_questionChange),
+        //Questions(questions[_count]),
+        Questions(questionAndAnswareText[_count]['ques']),
+        ...(questionAndAnswareText[_count]['ans'] as List<String>)
+            .map((answare) {
+          return Answares(_questionChange, answare);
+        }).toList(),
+        //Answares(_questionChange),
       ]),
     ));
   }
