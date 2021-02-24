@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  Result();
+  var score;
+  Result(this.score);
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        "Your quiz exam done!",
-        style: TextStyle(fontSize: 25),
-        textAlign: TextAlign.center,
-      ),
+      //heightFactor: ,
+        child: Text(
+          "Your quiz exam done!\nScore is: $score",
+          style: TextStyle(fontSize: 25,),
+          textAlign: TextAlign.center,textDirection: ,
+        ),
     );
   }
 }
