@@ -3,6 +3,9 @@ import 'package:Dropdown/Questions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Quiz.dart';
+import 'Result.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -27,26 +30,24 @@ class _HomePageState extends State<HomePage> {
   ];
 
   //Demo for Quize question and answare create and input
-  void inputValue(){
+  void inputValue() {
     String _1 = "question 4";
-        var _2 = 'answare 1';
-        var _3 = 'answare 2';
-        var _4 = 'answare 3';
-        var aObject = {
-          'ques': _1,
-          'ans': [_2, _3, _4],
-        };
-        questionAndAnswareText.add(aObject);
+    var _2 = 'answare 1';
+    var _3 = 'answare 2';
+    var _4 = 'answare 3';
+    var aObject = {
+      'ques': _1,
+      'ans': [_2, _3, _4],
+    };
+    questionAndAnswareText.add(aObject);
   }
 
-        
   var _count = 0;
   void _questionChange() {
-    
     setState(() {
       _count = _count + 1;
-      if (_count >= questionAndAnswareText.length) {
-        inputValue();
+      if (_count > questionAndAnswareText.length) {
+        //inputValue();
         _count = 0;
       }
     });
@@ -57,18 +58,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(children: [
-        //Questions(questions[_count]),
-        Questions(questionAndAnswareText[_count]['ques']),
-        ...(questionAndAnswareText[_count]['ans'] as List<String>)
-            .map((answare) {
-          return Answares(_questionChange, answare);
-        }).toList(),
-        //Answares(_questionChange),
-      ]),
-    ));
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: _count < questionAndAnswareText.length
+            ? Quiz(
+                count: _count,
+                questionAndAnswareText: questionAndAnswareText,
+                questionChange: _questionChange,
+              )
+            : Result(),
+      ),
+    );
   }
 }
 
